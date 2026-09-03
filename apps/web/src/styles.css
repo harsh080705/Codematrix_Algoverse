@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #050816;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(20, 181, 141, 0.18), transparent 24%),
+    radial-gradient(circle at top right, rgba(227, 155, 25, 0.18), transparent 22%),
+    linear-gradient(180deg, #0b1220 0%, #050816 100%);
+  color: #e2e8f0;
+}
+
+::selection {
+  background: rgba(20, 181, 141, 0.3);
+}
+
+.glass {
+  background: rgba(8, 15, 31, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-card {
+    @apply glass rounded-3xl shadow-glow;
+  }
+
+  .hero-kicker {
+    @apply inline-flex items-center gap-2 rounded-full border border-mint-300/30 bg-mint-300/10 px-4 py-2 text-sm font-medium text-mint-100;
+  }
+
+  .app-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold transition duration-200;
+  }
+
+  .app-button-primary {
+    @apply app-button bg-mint-300 text-ink-950 hover:bg-mint-200;
+  }
+
+  .app-button-secondary {
+    @apply app-button border border-white/10 bg-white/5 text-slate-100 hover:bg-white/10;
+  }
+
+  .app-pill {
+    @apply rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200;
+  }
+}

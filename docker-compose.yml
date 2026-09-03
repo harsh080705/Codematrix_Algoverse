@@ -1,0 +1,44 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: aihub-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: aihub
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: aihub-api
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/aihub
+      - PORT=8080
+      - NODE_ENV=production
+      - DEMO_MODE=false
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: aihub-web
+    restart: always
+    ports:
+      - "80:80"
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  mongo_data:

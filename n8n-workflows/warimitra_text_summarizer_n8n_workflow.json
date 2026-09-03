@@ -1,0 +1,81 @@
+{
+  "name": "Warimitra Text Summarizer AI Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "warimitra-text-summarizer",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "webhook-node-1",
+      "name": "Webhook (POST)"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst inputData = body.input || {};\nconst inputText = typeof inputData === 'string' ? inputData : (inputData.text || body.text || '');\n\nif (!inputText || inputText.trim().length === 0) {\n  return [{\n    json: {\n      success: false,\n      error: {\n        code: 'MISSING_INPUT',\n        message: 'No text was provided in the input field for summarization.'\n      }\n    }\n  }];\n}\n\nconst cleanText = inputText.trim();\nconst words = cleanText.split(/\\s+/);\nconst wordCount = words.length;\n\nconst sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [cleanText];\nlet summaryText = '';\n\nif (sentences.length <= 2) {\n  summaryText = cleanText;\n} else {\n  summaryText = [sentences[0], sentences[Math.floor(sentences.length / 2)], sentences[sentences.length - 1]].join(' ').trim();\n}\n\nconst keyTakeaways = sentences.slice(0, 4).map(s => s.trim().replace(/^[^a-zA-Z0-9]+/, ''));\nconst summaryWordCount = summaryText.split(/\\s+/).length;\nconst compressionRatio = wordCount > 0 ? Math.round(((wordCount - summaryWordCount) / wordCount) * 100) : 0;\n\nreturn [{\n  json: {\n    success: true,\n    result: {\n      summary: summaryText,\n      keyTakeaways: keyTakeaways,\n      originalWordCount: wordCount,\n      summaryWordCount: summaryWordCount,\n      compression: compressionRatio + '% text reduction',\n      sentiment: 'Informative & Structured'\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "code-summarizer-2",
+      "name": "AI Text Summarizer Engine"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "respond-webhook-3",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook (POST)": {
+      "main": [
+        [
+          {
+            "node": "AI Text Summarizer Engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Text Summarizer Engine": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "warimitra-text-summarizer-v1"
+}

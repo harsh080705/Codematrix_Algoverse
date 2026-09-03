@@ -1,0 +1,22 @@
+{
+  "name": "@aihub/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "node ../../node_modules/typescript/bin/tsc -p tsconfig.json",
+    "clean": "node ../../node_modules/typescript/bin/tsc --build --clean",
+    "dev": "node ../../node_modules/typescript/bin/tsc -p tsconfig.json --watch",
+    "test": "echo 'No test suite specified for @aihub/shared'",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

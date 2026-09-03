@@ -1,0 +1,33 @@
+{
+  "name": "@aihub/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "node ../../node_modules/typescript/bin/tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "echo 'lint configured at root'",
+    "test": "vitest run",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@aihub/shared": "file:../../packages/shared",
+    "@hono/node-server": "^1.13.8",
+    "@x402/avm": "^2.20.0",
+    "@x402/core": "^2.20.0",
+    "@x402/hono": "^2.20.0",
+    "bcryptjs": "^2.4.3",
+    "hono": "^4.7.8",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.11.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.9",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

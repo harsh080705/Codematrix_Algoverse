@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "ignoreDeprecations": "5.0",
+    "composite": true,
+    "jsx": "react-jsx",
+    "outDir": "dist",
+    "rootDir": "../..",
+    "types": ["vite/client"],
+    "noEmit": false
+  },
+  "include": ["src", "../../packages/shared/src"],
+  "exclude": ["dist", "node_modules"]
+}

@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: AIHub API
+  version: 1.0.0
+  description: Pay-per-use AI marketplace API with x402 settlement on Algorand.
+servers:
+  - url: http://localhost:8080
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: OK
+  /agents:
+    get:
+      summary: List agents
+      responses:
+        "200":
+          description: Agent list
+    post:
+      summary: Publish agent
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Created
+  /agents/{id}:
+    get:
+      summary: Get agent details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Agent details
+  /agents/{id}/run:
+    post:
+      summary: Execute paid AI agent
+      description: Returns 402 Payment Required until x402 settlement is provided.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Agent result
+        "402":
+          description: Payment required
+  /auth/register:
+    post:
+      summary: Register user
+      responses:
+        "201":
+          description: Created
+  /auth/login:
+    post:
+      summary: Login user
+      responses:
+        "200":
+          description: Token pair
+  /payments:
+    post:
+      summary: Prepare payment transaction
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Payment prepared
+  /transactions:
+    get:
+      summary: List transactions
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Transaction list
+  /receipts:
+    get:
+      summary: List receipts
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Receipt list
+  /dashboard:
+    get:
+      summary: Dashboard summary
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Dashboard data
+  /admin/analytics:
+    get:
+      summary: Admin analytics
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Admin metrics
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,12 @@
+node_modules
+dist
+apps/*/dist
+packages/*/dist
+coverage
+.env
+.env.*
+!.env.example
+.vscode/.ropeproject
+.DS_Store
+*.log
+*.tsbuildinfo
