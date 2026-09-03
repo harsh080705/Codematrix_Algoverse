@@ -23,7 +23,7 @@ import {
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <AppShell>
           <Routes>
             {/* Public Routes */}
