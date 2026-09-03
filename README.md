@@ -1,7 +1,5 @@
 # 🚀 Codematrix_Algoverse — AIHub x402 Marketplace
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-brightgreen?style=for-the-badge&logo=github)](https://harsh080705.github.io/Codematrix_Algoverse/)
-
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![React 19](https://img.shields.io/badge/React-19.0-61dafb.svg?style=flat-square&logo=react)](https://react.dev/)
 [![Hono API](https://img.shields.io/badge/Hono-4.7-flame.svg?style=flat-square&logo=hono)](https://hono.dev/)
@@ -12,8 +10,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 
 > **Codematrix_Algoverse (AIHub)** is a decentralized, pay-per-use AI agent marketplace built on **Algorand** and the **x402 (HTTP 402 Payment Required)** protocol. Developers publish autonomous AI services, users execute agents with instant USDC microtransactions via **Pera Wallet**, and every execution generates a cryptographically verifiable on-chain receipt.
-
-👉 **Experience Live Demo:** [https://harsh080705.github.io/Codematrix_Algoverse/](https://harsh080705.github.io/Codematrix_Algoverse/)
 
 ---
 
